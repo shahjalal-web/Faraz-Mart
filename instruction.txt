@@ -1,0 +1,2208 @@
+তুমি এখন Fajar Mart নামের একটি modern, scalable, production-ready, multi-category e-commerce platform-এর development assistant হিসেবে কাজ করবে।
+
+তোমার প্রধান কাজ হলো একটি সম্পূর্ণ, polished এবং professional e-commerce website তৈরি করা। এটি কোনো নির্দিষ্ট product category-এর জন্য তৈরি হবে না। বরং multi-category marketplace/e-commerce store হিসেবে কাজ করবে, যেখানে Admin Dashboard থেকে যেকোনো ধরনের category তৈরি করা যাবে এবং প্রতিটি category-এর অধীনে unlimited products যোগ করা যাবে।
+
+1. গুরুত্বপূর্ণ Communication Rule
+
+এই project-এর development চলাকালীন আমার সাথে তোমার সব conversation, explanation, progress update, question, suggestion, warning, error explanation এবং response অবশ্যই বাংলায় হবে।
+
+তবে:
+
+Website-এর UI text হবে English
+
+Button text হবে English
+
+Navigation text হবে English
+
+Form labels হবে English
+
+Error/success messages যা end-user website-এ দেখবে সেগুলো English হবে
+
+Admin Dashboard-এর UI text-ও English হবে
+
+Product/category/customer/order related website content English হবে
+
+Code, variable names, function names, file names এবং comments প্রয়োজন অনুযায়ী English হবে
+
+অর্থাৎ:
+
+আমার সাথে কথা বলবে বাংলা ভাষায়, কিন্তু পুরো Fajar Mart website হবে English-language website।
+
+আমি যদি English-এ কোনো instruction দিই, তবুও তোমার explanation/response বাংলায় দেবে, যদি না আমি বিশেষভাবে অন্য ভাষা চাই।
+
+2. Project Name
+
+Project Name:
+
+Fajar Mart
+
+Brand type:
+
+Multi-Category E-Commerce Platform
+
+Website-এর উদ্দেশ্য:
+
+একটি general-purpose online shopping platform তৈরি করা যেখানে:
+
+বিভিন্ন category থাকবে
+
+প্রতিটি category-এর মধ্যে বিভিন্ন product থাকবে
+
+customer product browse করতে পারবে
+
+advanced search করতে পারবে
+
+filtering/sorting করতে পারবে
+
+product details দেখতে পারবে
+
+cart-এ product যোগ করতে পারবে
+
+wishlist করতে পারবে
+
+checkout করতে পারবে
+
+order place করতে পারবে
+
+নিজের order track করতে পারবে
+
+profile manage করতে পারবে
+
+অন্যদিকে Admin:
+
+category manage করতে পারবে
+
+product manage করতে পারবে
+
+order manage করতে পারবে
+
+customer manage করতে পারবে
+
+admin manage করতে পারবে
+
+inventory manage করতে পারবে
+
+analytics দেখতে পারবে
+
+promotions/manage করতে পারবে
+
+website-এর বিভিন্ন content/settings manage করতে পারবে
+
+3. Technology Requirement
+
+Frontend-এর জন্য অবশ্যই:
+
+Next.js
+
+TypeScript
+
+Modern React architecture
+
+Tailwind CSS
+
+Reusable component architecture
+
+Responsive design
+
+Mobile-first approach
+
+UI এমনভাবে তৈরি করবে যাতে পরবর্তীতে backend/API/database যুক্ত করা সহজ হয়।
+
+4. Backend ও Database সম্পর্কে গুরুত্বপূর্ণ নির্দেশনা
+
+এই development phase-এ backend/database-এর final technology এখনো নির্ধারিত নয়।
+
+আমি পরবর্তীতে:
+
+MongoDB
+
+অথবা
+
+PostgreSQL
+
+এর মধ্যে একটি নির্বাচন করব।
+
+তাই frontend এবং application architecture এমনভাবে তৈরি করবে যাতে database choice-এর কারণে পুরো application rewrite করতে না হয়।
+
+Database-specific logic সরাসরি UI components-এর মধ্যে লিখবে না।
+
+Data access-এর জন্য abstraction layer/service layer তৈরি করার মতো architecture রাখবে।
+
+উদাহরণ:
+
+UI
+↓
+Hooks / State
+↓
+Service Layer
+↓
+API Layer
+↓
+Database
+
+পরবর্তীতে database পরিবর্তন হলেও frontend architecture যতটা সম্ভব অপরিবর্তিত থাকবে।
+
+এখন যেখানে real backend/API দরকার কিন্তু backend implementation দেওয়া হয়নি, সেখানে clean mock data/service abstraction ব্যবহার করতে পারো।
+
+তবে mock implementation এমনভাবে তৈরি করবে যাতে পরে real API দিয়ে সহজে replace করা যায়।
+
+5. Overall Design Philosophy
+
+Fajar Mart দেখতে হবে:
+
+Modern
+
+Premium
+
+Clean
+
+Professional
+
+Trustworthy
+
+Fast
+
+Minimal but feature-rich
+
+Mobile responsive
+
+Conversion-focused
+
+Design কোনো নির্দিষ্ট existing e-commerce website-এর exact copy হবে না।
+
+নিজস্ব visual identity তৈরি করবে।
+
+Design inspiration হিসেবে modern e-commerce platforms-এর সাধারণ UX patterns ব্যবহার করা যেতে পারে, কিন্তু কোনো existing brand-এর design হুবহু copy করবে না।
+
+6. Brand Identity
+
+Brand:
+
+Fajar Mart
+
+Brand feeling:
+
+Reliable
+
+Modern
+
+Affordable
+
+Convenient
+
+Professional
+
+Logo area থাকবে।
+
+Primary brand color এবং supporting colors এমনভাবে নির্বাচন করবে যাতে:
+
+accessibility ভালো থাকে
+
+text readable হয়
+
+CTA button prominent হয়
+
+product images-এর সাথে conflict না করে
+
+পুরো website জুড়ে consistent design system ব্যবহার করবে।
+
+7. Website Structure
+
+Customer-facing website-এর প্রধান pages:
+
+Public Pages
+
+Home
+
+Shop
+
+All Products
+
+Category Listing
+
+Category Details
+
+Product Details
+
+Search Results
+
+Cart
+
+Wishlist
+
+Checkout
+
+Order Success
+
+Login
+
+Register
+
+Forgot Password
+
+Reset Password
+
+Customer Profile
+
+My Orders
+
+Order Details
+
+Order Tracking
+
+Address Management
+
+Account Settings
+
+Notifications
+
+About Us
+
+Contact Us
+
+FAQ
+
+Privacy Policy
+
+Terms & Conditions
+
+Return & Refund Policy
+
+Shipping Policy
+
+404 Page
+
+8. Home Page
+
+Home page হবে conversion-focused এবং dynamic.
+
+এতে থাকতে পারে:
+
+Header
+
+Logo
+
+Search bar
+
+Categories
+
+Account
+
+Wishlist
+
+Cart
+
+Mobile menu
+
+Hero Section
+
+Large promotional banner:
+
+Main heading
+
+Supporting text
+
+CTA
+
+Promotional image
+
+Example:
+
+Shop Everything You Love
+
+CTA:
+
+Shop Now
+
+Hero section future-এ admin dashboard থেকে dynamic করা যাবে এমন architecture রাখবে।
+
+Featured Categories
+
+Category cards:
+
+Category image
+
+Category name
+
+Product count
+
+View Category CTA
+
+Admin-created categories এখানে automatically display করার মতো structure থাকবে।
+
+Featured Products
+
+Product grid:
+
+Product image
+
+Product name
+
+Rating
+
+Current price
+
+Previous price
+
+Discount
+
+Wishlist button
+
+Quick view
+
+Add to cart
+
+Flash Sale / Deals
+
+যদি কোনো product promotional pricing-এ থাকে তাহলে:
+
+Discount badge
+
+Old price
+
+Current price
+
+Countdown UI
+
+দেখাতে পারবে।
+
+Countdown system এমনভাবে তৈরি করবে যাতে পরে backend/API থেকে campaign data আসতে পারে।
+
+New Arrivals
+
+Latest products দেখাবে।
+
+Best Sellers
+
+Popular products দেখাবে।
+
+Promotional Banner
+
+Admin-controlled promotional banners-এর জন্য reusable section তৈরি করবে।
+
+Why Shop With Us
+
+Features যেমন:
+
+Secure Payments
+
+Fast Delivery
+
+Easy Returns
+
+Customer Support
+
+Customer Reviews
+
+Review cards থাকবে।
+
+Newsletter
+
+Email input + subscribe CTA থাকবে।
+
+9. Header & Navigation
+
+Desktop header:
+
+Fajar Mart logo
+
+Shop
+
+Categories
+
+Deals
+
+New Arrivals
+
+Search
+
+Account
+
+Wishlist
+
+Cart
+
+Mobile:
+
+Hamburger menu
+
+Logo
+
+Search
+
+Cart
+
+Header sticky behavior থাকতে পারে।
+
+Cart এবং wishlist-এর count badge থাকবে।
+
+10. Advanced Search System
+
+Search system খুব গুরুত্বপূর্ণ।
+
+Search functionality-এর architecture এমনভাবে তৈরি করবে যাতে future backend search implementation সহজ হয়।
+
+Search-এর মধ্যে:
+
+Keyword search
+
+Product name search
+
+Category search
+
+Brand search
+
+SKU search
+
+Description search
+
+Future-ready filtering:
+
+Category
+
+Subcategory
+
+Brand
+
+Price range
+
+Rating
+
+Availability
+
+Discount
+
+Color
+
+Size
+
+Product attributes
+
+Sorting:
+
+Relevance
+
+Newest
+
+Price Low to High
+
+Price High to Low
+
+Best Rating
+
+Most Popular
+
+Discount
+
+Search result page-এ:
+
+Search query
+
+Result count
+
+Filters
+
+Sort
+
+Product grid
+
+Pagination অথবা Load More
+
+থাকবে।
+
+11. Category System
+
+Category system dynamic হতে হবে।
+
+Admin Dashboard থেকে:
+
+Create Category
+
+Edit Category
+
+Delete Category
+
+Enable/Disable Category
+
+Category Image
+
+Category Description
+
+Category Slug
+
+SEO title
+
+SEO description
+
+manage করা যাবে।
+
+Subcategory support রাখবে।
+
+Example:
+
+Electronics
+├── Mobile Phones
+├── Laptops
+├── Accessories
+└── Wearables
+
+অথবা:
+
+Fashion
+├── Men's
+├── Women's
+├── Kids
+└── Shoes
+
+কিন্তু system কোনো fixed category-এর মধ্যে সীমাবদ্ধ থাকবে না।
+
+Admin যেকোনো নতুন category তৈরি করতে পারবে।
+
+12. Product Management
+
+Product system অত্যন্ত flexible হতে হবে।
+
+একটি product-এর জন্য:
+
+Product name
+
+SKU
+
+Slug
+
+Category
+
+Subcategory
+
+Brand
+
+Description
+
+Short description
+
+Product images
+
+Thumbnail
+
+Price
+
+Sale price
+
+Discount
+
+Stock quantity
+
+Stock status
+
+Weight
+
+Dimensions
+
+Variants
+
+Attributes
+
+Tags
+
+Rating
+
+Reviews
+
+Featured status
+
+Best seller status
+
+New arrival status
+
+Visibility
+
+SEO title
+
+SEO description
+
+রাখার architecture তৈরি করবে।
+
+13. Product Variants
+
+যেসব product-এর variants থাকে সেগুলোর জন্য flexible architecture থাকবে।
+
+যেমন:
+
+Color:
+
+Black
+
+White
+
+Blue
+
+Size:
+
+S
+
+M
+
+L
+
+XL
+
+প্রতিটি variant-এর জন্য future-readyভাবে:
+
+SKU
+
+Price
+
+Stock
+
+Image
+
+রাখার ব্যবস্থা থাকবে।
+
+14. Product Details Page
+
+Product details page অত্যন্ত polished হতে হবে।
+
+Sections:
+
+Image gallery
+
+Product title
+
+Rating
+
+Reviews count
+
+SKU
+
+Price
+
+Discount
+
+Availability
+
+Variant selection
+
+Quantity selector
+
+Add to Cart
+
+Buy Now
+
+Wishlist
+
+Product description
+
+Specifications
+
+Shipping information
+
+Return information
+
+Reviews
+
+Related products
+
+Frequently bought together
+
+15. Cart
+
+Cart page-এ:
+
+Product image
+
+Product name
+
+Variant
+
+Price
+
+Quantity
+
+Subtotal
+
+Remove
+
+Save for later
+
+Coupon
+
+Shipping estimate
+
+Tax
+
+Grand total
+
+Checkout CTA
+
+থাকবে।
+
+Cart drawer/mini cart-ও তৈরি করতে পারো।
+
+16. Wishlist
+
+Wishlist functionality:
+
+Add product
+
+Remove product
+
+Move to cart
+
+Product availability
+
+Price
+
+দেখাবে।
+
+Wishlist icon customer account-এর সাথে sync করার মতো architecture রাখবে।
+
+17. Checkout
+
+Checkout clean এবং distraction-free হবে।
+
+Sections:
+
+Customer Information
+
+Name
+
+Email
+
+Phone
+
+Shipping Address
+
+Address
+
+City
+
+State/Region
+
+Postal Code
+
+Country
+
+Delivery Method
+
+Standard
+
+Express
+
+Payment Method
+
+Backend/payment gateway এখন implement করার দরকার নেই।
+
+তবে payment method UI এবং architecture future integration-এর জন্য প্রস্তুত রাখবে।
+
+Order Summary
+
+Items
+
+Subtotal
+
+Shipping
+
+Discount
+
+Tax
+
+Total
+
+CTA:
+
+Place Order
+
+18. Order System
+
+Order object-এর architecture future-ready হবে।
+
+Order status:
+
+Pending
+Confirmed
+Processing
+Packed
+Shipped
+Out for Delivery
+Delivered
+Cancelled
+Returned
+Refunded
+
+Customer order history দেখতে পারবে।
+
+19. Order Tracking
+
+Customer একটি order-এর tracking timeline দেখতে পারবে।
+
+Example:
+
+Order Placed
+      ↓
+Confirmed
+      ↓
+Processing
+      ↓
+Packed
+      ↓
+Shipped
+      ↓
+Out for Delivery
+      ↓
+Delivered
+
+Timeline UI polished হবে।
+
+20. Customer Account
+
+Customer dashboard:
+
+Overview
+
+My Orders
+
+Wishlist
+
+Addresses
+
+Profile
+
+Notifications
+
+Account Settings
+
+Security
+
+21. Customer Profile
+
+Customer manage করতে পারবে:
+
+Name
+
+Profile image
+
+Email
+
+Phone
+
+Password
+
+Addresses
+
+22. Reviews & Ratings
+
+Product review system-এর frontend architecture তৈরি করবে।
+
+Customer:
+
+Rating দিতে পারবে
+
+Review লিখতে পারবে
+
+Review edit/delete করতে পারবে
+
+Review UI:
+
+Average rating
+
+Rating distribution
+
+Review list
+
+Verified purchase badge
+
+Review date
+
+23. ADMIN DASHBOARD
+
+Admin Dashboard হবে application-এর সবচেয়ে গুরুত্বপূর্ণ অংশগুলোর একটি।
+
+Dashboard-এর design হবে:
+
+Professional
+
+Data-rich
+
+Clean
+
+Responsive
+
+Easy to navigate
+
+24. Admin Dashboard Main Sections
+
+Sidebar:
+
+Dashboard
+
+Catalog
+├── Products
+├── Categories
+├── Brands
+├── Attributes
+└── Inventory
+
+Orders
+├── All Orders
+├── Pending
+├── Processing
+├── Shipped
+├── Delivered
+├── Cancelled
+└── Returns
+
+Customers
+├── All Customers
+├── Customer Groups
+└── Reviews
+
+Marketing
+├── Coupons
+├── Discounts
+├── Campaigns
+├── Banners
+└── Promotions
+
+Content
+├── Homepage
+├── Pages
+├── FAQ
+└── Announcements
+
+Analytics
+├── Sales
+├── Orders
+├── Customers
+├── Products
+└── Revenue
+
+Administration
+├── Admin Users
+├── Roles
+└── Permissions
+
+Settings
+├── Store Settings
+├── Payment
+├── Shipping
+├── Tax
+├── Notifications
+└── Security
+
+25. Admin Dashboard Overview
+
+Dashboard cards:
+
+Total Revenue
+
+Total Orders
+
+Total Customers
+
+Total Products
+
+Pending Orders
+
+Low Stock Products
+
+Charts:
+
+Revenue over time
+
+Orders over time
+
+Sales by category
+
+Top products
+
+Customer growth
+
+Recent orders table:
+
+Order ID
+
+Customer
+
+Date
+
+Amount
+
+Payment status
+
+Order status
+
+Action
+
+26. Admin Product Management
+
+Product table:
+
+Image
+
+Product
+
+SKU
+
+Category
+
+Price
+
+Stock
+
+Status
+
+Created date
+
+Actions
+
+Actions:
+
+View
+
+Edit
+
+Duplicate
+
+Delete
+
+Enable/Disable
+
+Bulk actions:
+
+Delete
+
+Activate
+
+Deactivate
+
+Update category
+
+Update status
+
+27. Admin Product Creation
+
+Create Product page হবে advanced form।
+
+Sections:
+
+Basic Information
+
+Product Name
+
+SKU
+
+Category
+
+Subcategory
+
+Brand
+
+Description
+
+Short Description
+
+Full Description
+
+Pricing
+
+Regular Price
+
+Sale Price
+
+Cost Price (future-ready)
+
+Inventory
+
+Stock
+
+Low Stock Threshold
+
+SKU
+
+Availability
+
+Images
+
+Multiple images
+
+Main image selection
+
+Image preview
+
+Remove/reorder
+
+Variants
+
+Dynamic variant builder।
+
+SEO
+
+Meta Title
+
+Meta Description
+
+URL Slug
+
+28. Admin Category Management
+
+Category table:
+
+Image
+
+Name
+
+Parent
+
+Product count
+
+Status
+
+Actions
+
+Create/Edit Category:
+
+Name
+
+Slug
+
+Description
+
+Image
+
+Parent category
+
+Status
+
+SEO title
+
+SEO description
+
+29. Admin Order Management
+
+Order table:
+
+Order ID
+
+Customer
+
+Date
+
+Total
+
+Payment status
+
+Order status
+
+Actions
+
+Order details page:
+
+Customer information
+
+Shipping address
+
+Items
+
+Pricing breakdown
+
+Payment information
+
+Order timeline
+
+Notes
+
+Status update
+
+Admin যেন order status update করতে পারে এমন UI তৈরি করবে।
+
+30. Customer Management
+
+Admin customer table:
+
+Customer name
+
+Email
+
+Phone
+
+Orders
+
+Total spent
+
+Last order
+
+Status
+
+Registration date
+
+Customer details:
+
+Profile
+
+Order history
+
+Addresses
+
+Reviews
+
+Spending summary
+
+31. Admin Management
+
+একাধিক admin support করতে হবে।
+
+Admin management:
+
+Admin list
+
+Add admin
+
+Edit admin
+
+Disable admin
+
+Delete admin
+
+Role assignment
+
+Role-based access architecture রাখতে হবে।
+
+Example:
+
+Super Admin
+Admin
+Manager
+Order Manager
+Product Manager
+Support Agent
+
+Permissions granular হওয়ার মতো architecture তৈরি করবে।
+
+32. Inventory Management
+
+Inventory page:
+
+Product
+
+SKU
+
+Stock
+
+Reserved
+
+Available
+
+Low stock status
+
+Filters:
+
+In stock
+
+Low stock
+
+Out of stock
+
+Low-stock warning UI থাকবে।
+
+33. Coupon & Discount System
+
+Admin:
+
+Create coupon
+
+Edit coupon
+
+Delete coupon
+
+Enable/disable coupon
+
+Coupon types:
+
+Percentage
+
+Fixed amount
+
+Free shipping
+
+Conditions future-ready:
+
+Minimum order amount
+
+Category-specific
+
+Product-specific
+
+Customer-specific
+
+Expiry date
+
+Usage limit
+
+34. Marketing
+
+Marketing section-এ:
+
+Promotional banners
+
+Coupons
+
+Campaigns
+
+Flash sales
+
+Featured products
+
+Homepage promotions
+
+manage করার interface থাকবে।
+
+35. Analytics
+
+Analytics dashboard:
+
+Revenue
+
+Orders
+
+Average order value
+
+Conversion-related metrics
+
+Customers
+
+Product performance
+
+Category performance
+
+Date filters:
+
+Today
+
+7 Days
+
+30 Days
+
+3 Months
+
+12 Months
+
+Custom Range
+
+36. Notifications
+
+Notification system-এর UI architecture তৈরি করবে।
+
+Customer notifications:
+
+Order confirmation
+
+Order status
+
+Delivery update
+
+Promotion
+
+Admin notifications:
+
+New order
+
+Low stock
+
+New customer
+
+Product review
+
+37. Responsive Design
+
+Website অবশ্যই:
+
+Mobile
+
+Tablet
+
+Laptop
+
+Desktop
+
+Large Desktop
+
+সব screen size-এ properly responsive হতে হবে।
+
+Mobile experience-কে desktop-এর ছোট version হিসেবে বানাবে না।
+
+Mobile-specific UX তৈরি করবে।
+
+38. Loading States
+
+প্রতিটি async-style UI-এর জন্য:
+
+Skeleton loading
+
+Spinner যেখানে appropriate
+
+Empty state
+
+Error state
+
+থাকবে।
+
+উদাহরণ:
+
+যদি product না থাকে:
+
+No products found
+
+এবং একটি helpful CTA থাকবে।
+
+39. Error Handling
+
+User-facing error message English হবে।
+
+Error UI:
+
+Friendly
+
+Clear
+
+Actionable
+
+হতে হবে।
+
+Technical error কখনো rawভাবে customer-এর সামনে দেখাবে না।
+
+40. Accessibility
+
+Accessibility seriously consider করবে।
+
+যেমন:
+
+Semantic HTML
+
+Proper labels
+
+Keyboard navigation
+
+Focus states
+
+Accessible buttons
+
+Alt text
+
+Proper contrast
+
+ARIA যেখানে প্রয়োজন
+
+41. SEO
+
+Next.js-এর SEO capabilities ব্যবহার করবে।
+
+প্রতিটি important page-এর জন্য:
+
+Metadata
+
+Title
+
+Description
+
+Canonical-ready structure
+
+Open Graph-ready structure
+
+SEO-friendly URLs
+
+রাখবে।
+
+Product এবং category page SEO-friendly হবে।
+
+Example:
+
+/shop
+/category/electronics
+/category/electronics/mobile-phones
+/product/iphone-15-pro
+
+42. URL Structure
+
+Clean URL structure ব্যবহার করবে।
+
+Examples:
+
+/
+/shop
+/search?q=phone
+/category/electronics
+/category/fashion
+/product/product-slug
+/cart
+/checkout
+/account
+/account/orders
+/account/orders/order-id
+/account/wishlist
+/account/addresses
+/admin
+/admin/products
+/admin/categories
+/admin/orders
+/admin/customers
+
+43. Component Architecture
+
+Codebase clean এবং reusable হতে হবে।
+
+Repeated UI manually copy-paste করবে না।
+
+Reusable components তৈরি করবে যেমন:
+
+Button
+Input
+Select
+Modal
+Dropdown
+Table
+Pagination
+Badge
+Card
+ProductCard
+CategoryCard
+PriceDisplay
+Rating
+SearchBar
+FilterSidebar
+Header
+Footer
+Sidebar
+Breadcrumb
+EmptyState
+LoadingState
+ErrorState
+
+44. Product Components
+
+Product-related reusable components:
+
+ProductCard
+ProductGrid
+ProductGallery
+ProductInfo
+ProductPrice
+ProductRating
+ProductVariantSelector
+QuantitySelector
+AddToCartButton
+WishlistButton
+RelatedProducts
+ProductReviews
+
+45. Admin Components
+
+Admin-এর জন্য reusable components:
+
+AdminLayout
+AdminSidebar
+AdminHeader
+StatCard
+DataTable
+FilterBar
+SearchInput
+StatusBadge
+ConfirmDialog
+FormSection
+ImageUploader
+DateRangePicker
+
+46. State Management
+
+Application state logically separate করবে।
+
+Global state-এর জন্য প্রয়োজন অনুযায়ী:
+
+Cart
+
+Wishlist
+
+User/session state
+
+UI state
+
+manage করবে।
+
+Unnecessary global state তৈরি করবে না।
+
+47. Mock Data
+
+Backend না থাকায় realistic mock data তৈরি করবে।
+
+কমপক্ষে:
+
+8–10 categories
+
+30+ products
+
+Multiple product variants
+
+Multiple customers
+
+Multiple orders
+
+Reviews
+
+Coupons
+
+Admin users
+
+থাকলে development/demo experience ভালো হবে।
+
+Mock data realistic হবে।
+
+একই placeholder text বারবার ব্যবহার করবে না।
+
+48. Images
+
+Product images-এর জন্য consistent image aspect ratio ব্যবহার করবে।
+
+Image layout যেন broken না হয়।
+
+Image loading optimization consider করবে।
+
+Next.js image optimization ব্যবহার করবে যেখানে appropriate।
+
+49. Tables
+
+Admin tables responsive হতে হবে।
+
+Mobile-এ table horizontal scroll অথবা responsive card layout ব্যবহার করবে।
+
+প্রতিটি table-এ:
+
+Search
+
+Filter
+
+Sort
+
+Pagination
+
+যেখানে relevant সেখানে থাকবে।
+
+50. Forms
+
+Forms polished হবে।
+
+প্রতিটি input-এর:
+
+Label
+
+Placeholder
+
+Validation state
+
+Error state
+
+Success state
+
+থাকবে।
+
+51. Security-Oriented Frontend Architecture
+
+Backend এখন তৈরি হচ্ছে না, কিন্তু frontend security-conscious হবে।
+
+যেমন:
+
+Sensitive data UI-তে expose করবে না
+
+Authorization logic-এর frontend placeholder architecture রাখবে
+
+Admin routes আলাদা রাখবে
+
+Customer routes আলাদা রাখবে
+
+Future authentication integration-এর জন্য clean boundaries রাখবে
+
+Frontend-only permission check-কে real security হিসেবে consider করবে না।
+
+52. Performance
+
+Performance গুরুত্বপূর্ণ।
+
+অপ্রয়োজনীয়:
+
+re-render
+
+large client components
+
+unnecessary dependencies
+
+duplicate code
+
+এড়াবে।
+
+Next.js-এর server/client component architecture appropriateভাবে ব্যবহার করবে।
+
+53. Mobile Navigation
+
+Mobile navigation polished হবে।
+
+Mobile menu-তে:
+
+Shop
+
+Categories
+
+Deals
+
+New Arrivals
+
+Account
+
+Wishlist
+
+Orders
+
+থাকতে পারে।
+
+54. Footer
+
+Footer:
+
+Shop
+
+All Products
+
+Categories
+
+New Arrivals
+
+Deals
+
+Customer Service
+
+Contact Us
+
+FAQ
+
+Shipping
+
+Returns
+
+Company
+
+About Us
+
+Privacy Policy
+
+Terms
+
+Newsletter
+
+Email subscription
+
+Social Links
+
+Social icons
+
+55. Empty States
+
+প্রতিটি relevant section-এর empty state design করবে।
+
+Examples:
+
+Wishlist empty:
+
+Your wishlist is empty
+
+CTA:
+
+Start Shopping
+
+Cart empty:
+
+Your cart is empty
+
+CTA:
+
+Continue Shopping
+
+Orders empty:
+
+You haven't placed any orders yet.
+
+56. Confirmation Dialogs
+
+Dangerous actions-এর জন্য confirmation modal থাকবে।
+
+যেমন:
+
+Delete product
+
+Delete category
+
+Delete customer
+
+Delete admin
+
+Cancel order
+
+57. Toast Notifications
+
+Actions-এর জন্য toast:
+
+Product added to cart
+
+Added to wishlist
+
+Product removed
+
+Coupon applied
+
+Profile updated
+
+Product deleted
+
+ইত্যাদি।
+
+Website UI English হবে।
+
+58. Design Consistency
+
+একটি consistent design system maintain করবে:
+
+Typography
+
+Spacing
+
+Border radius
+
+Shadows
+
+Buttons
+
+Forms
+
+Cards
+
+Icons
+
+Colors
+
+প্রতিটি page যেন একই application-এর অংশ মনে হয়।
+
+59. Icons
+
+Icons-এর জন্য একটি consistent icon library ব্যবহার করবে।
+
+একাধিক icon library অপ্রয়োজনীয়ভাবে ব্যবহার করবে না।
+
+60. Important Development Rule
+
+একসাথে সবকিছু blindly generate করবে না।
+
+প্রথমে:
+
+Project structure বুঝবে
+
+Architecture define করবে
+
+Main routes identify করবে
+
+Component system তৈরি করবে
+
+Design system তৈরি করবে
+
+Customer-facing pages তৈরি করবে
+
+Admin Dashboard তৈরি করবে
+
+Mock data integration করবে
+
+Responsive behavior implement করবে
+
+শেষে consistency এবং quality audit করবে
+
+61. Code Quality
+
+Code:
+
+Clean
+
+Maintainable
+
+Modular
+
+Reusable
+
+Type-safe
+
+Scalable
+
+হতে হবে।
+
+TypeScript ব্যবহার করলে অপ্রয়োজনীয় any ব্যবহার করবে না।
+
+Duplicate logic minimize করবে।
+
+Hardcoded values যেখানে configuration/data-driven করা সম্ভব সেখানে hardcode করবে না।
+
+62. Do Not Do These Things
+
+নিচের কাজগুলো করবে না:
+
+পুরো website এক বা দুইটি বিশাল component-এ লিখবে না
+
+একই component বারবার copy করবে না
+
+সব data UI component-এ hardcode করবে না
+
+Database-specific logic UI-এর মধ্যে লিখবে না
+
+unnecessary dependencies install করবে না
+
+broken placeholder UI রাখবে না
+
+desktop-only design করবে না
+
+mobile responsiveness শেষে চিন্তা করবে না
+
+raw technical error customer-এর সামনে দেখাবে না
+
+existing e-commerce website-এর exact clone করবে না
+
+unnecessarily complex architecture তৈরি করবে না
+
+63. Current Scope
+
+এই phase-এ মূল focus:
+
+Complete frontend + UI/UX + application structure + mock data + frontend business flow + admin dashboard
+
+Backend/database এখন final implementation-এর scope-এর বাইরে।
+
+তবে architecture এমন হবে যাতে backend পরে cleanly integrate করা যায়।
+
+64. Future Backend Compatibility
+
+পরবর্তীতে আমি database হিসেবে MongoDB অথবা PostgreSQL নির্বাচন করব।
+
+তখন architecture যেন support করে:
+
+Frontend
+    ↓
+API
+    ↓
+Service Layer
+    ↓
+Database
+
+MongoDB হলে:
+
+Next.js
+→ API
+→ Service Layer
+→ MongoDB
+
+PostgreSQL হলে:
+
+Next.js
+→ API
+→ Service Layer
+→ PostgreSQL
+
+Frontend rewrite যেন না লাগে।
+
+65. Final Quality Standard
+
+আমি একটি সাধারণ demo website চাই না।
+
+আমি চাই এটি দেখতে এবং ব্যবহার করতে যেন একটি real commercial e-commerce product মনে হয়।
+
+বিশেষভাবে লক্ষ্য রাখবে:
+
+Premium UI
+
+Smooth UX
+
+Professional spacing
+
+Excellent responsive design
+
+Realistic product data
+
+Good empty states
+
+Good loading states
+
+Good error states
+
+Consistent components
+
+Clean navigation
+
+Functional interactions
+
+Admin usability
+
+Scalable architecture
+
+66. Development Workflow
+
+প্রথমে project inspect করবে।
+
+যদি project already initialized থাকে, existing structure নষ্ট করবে না।
+
+প্রথমে existing codebase এবং configuration বুঝবে।
+
+তারপর প্রয়োজন হলে structure improve করবে।
+
+কাজ করার আগে আমাকে শুধু unnecessary confirmation-এর জন্য বারবার প্রশ্ন করবে না।
+
+যদি কোনো implementation detail unspecified থাকে এবং reasonable industry-standard decision নেওয়া যায়, তাহলে নিজে sensible decision নেবে এবং আমাকে বাংলায় সংক্ষেপে জানাবে।
+
+তবে এমন কোনো decision যদি পুরো architecture-কে significantly affect করে, তাহলে আগে আমাকে বাংলায় জানাবে।
+
+67. প্রতিটি কাজের পর Response Format
+
+প্রতিটি major implementation-এর পর আমাকে বাংলায় জানাবে:
+
+কী করা হয়েছে
+
+সংক্ষেপে implemented features-এর list।
+
+কোন files পরিবর্তন হয়েছে
+
+প্রয়োজন অনুযায়ী গুরুত্বপূর্ণ file list।
+
+কীভাবে কাজ করছে
+
+সংক্ষিপ্ত explanation।
+
+Next Step
+
+পরবর্তী logical development step কী।
+
+কিন্তু অপ্রয়োজনীয় দীর্ঘ explanation করবে না।
+
+68. যদি কোনো Error পাও
+
+Error হলে:
+
+Error-এর কারণ identify করবে
+
+নিজে fix করার চেষ্টা করবে
+
+Fix করার পর verify করবে
+
+আমাকে বাংলায় জানাবে কী সমস্যা ছিল এবং কীভাবে fix করা হয়েছে
+
+শুধু error দেখিয়ে থেমে যাবে না।
+
+69. যদি কোনো Feature অসম্পূর্ণ থাকে
+
+কোনো feature-এর জন্য backend না থাকলে:
+
+realistic mock implementation ব্যবহার করবে
+
+architecture future API-ready রাখবে
+
+UI interaction functional রাখবে
+
+যেমন:
+
+Cart-এর জন্য mock state ব্যবহার করা যাবে।
+
+Order tracking-এর জন্য mock order data ব্যবহার করা যাবে।
+
+Admin analytics-এর জন্য mock analytics data ব্যবহার করা যাবে।
+
+কিন্তু UI এমন হবে যেন real system-এর মতো কাজ করছে।
+
+70. Important: Don't Overengineer
+
+আমি চাই না একটি simple e-commerce frontend-এর জন্য unnecessarily massive enterprise architecture তৈরি করা হোক।
+
+Architecture হবে:
+
+Simple + Clean + Scalable + Maintainable
+
+অপ্রয়োজনীয় abstraction তৈরি করবে না।
+
+71. First Task
+
+এখন প্রথমে পুরো project-এর জন্য একটি architecture plan তৈরি করো।
+
+এর মধ্যে আমাকে বাংলায় জানাবে:
+
+Recommended folder structure
+
+Route structure
+
+Component architecture
+
+State management approach
+
+Mock data structure
+
+API/service abstraction approach
+
+Customer-facing page structure
+
+Admin dashboard structure
+
+Responsive strategy
+
+Design system strategy
+
+তারপর implementation শুরু করবে।
+
+তবে শুধু plan লিখে থেমে থাকবে না।
+
+Project-এর বর্তমান অবস্থা অনুযায়ী যতটা সম্ভব implementation শুরু করবে।
+
+72. Most Important Instruction
+
+এই project-এর প্রতিটি অংশকে একটি interconnected e-commerce system হিসেবে বিবেচনা করবে।
+
+Home page, Product page, Cart, Checkout, Account, Orders এবং Admin Dashboard আলাদা আলাদা demo page হবে না।
+
+সবগুলো একই application-এর অংশ হিসেবে consistent data model এবং UI logic অনুসরণ করবে।
+
+উদাহরণ:
+
+Admin যদি একটি category তৈরি করে, তাহলে সেই category customer-facing category system-এ future data integration-এর মাধ্যমে ব্যবহার করা যাবে।
+
+Admin যদি product create করে, সেই product:
+
+category listing
+
+search
+
+product details
+
+cart
+
+wishlist
+
+related products
+
+orders
+
+সব জায়গায় ব্যবহারযোগ্য architecture-এর মধ্যে থাকবে।
+
+73. End Goal
+
+শেষে Fajar Mart এমন একটি complete e-commerce frontend platform হবে যেখানে একজন visitor:
+
+Browse → Search → Filter → View Product → Add to Cart → Wishlist → Checkout → Place Order → Track Order → Manage Account
+
+পুরো flow সম্পন্ন করতে পারবে।
+
+এবং একজন admin:
+
+Dashboard → Products → Categories → Inventory → Orders → Customers → Marketing → Analytics → Admins → Settings
+
+সম্পূর্ণ manage করতে পারবে।
+
+এটাই Fajar Mart-এর core product vision।
+
+এখন এই specification অনুসরণ করে project inspect করো, architecture plan তৈরি করো এবং তারপর implementation শুরু করো।
+
+সব conversation এবং explanation বাংলায় রাখবে। Website UI এবং content English-এ রাখবে। 

@@ -1,26 +1,300 @@
 @import "tailwindcss";
 
+/**
+ * Fajar Mart design tokens.
+ * -------------------------------------------------------------------------
+ * Every color in the product is driven from the CSS variables below. To
+ * re-theme the entire site (light palette, dark palette, brand gradient),
+ * change values here — components consume semantic Tailwind utilities
+ * (bg-primary, text-foreground, border-border, ...) generated from the
+ * `@theme inline` block, never raw hex codes.
+ */
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --background: #fdfbf9;
+  --surface: #ffffff;
+  --surface-alt: #f6f1ec;
+  --border: #e8e1d9;
+
+  /* Text */
+  --foreground: #1c1a22;
+  --muted-foreground: #6b6574;
+
+  /* Brand */
+  --primary: #ff6a3d;
+  --primary-hover: #e8531f;
+  --primary-foreground: #ffffff;
+
+  --secondary: #2a2356;
+  --secondary-foreground: #ffffff;
+
+  --accent: #ff3d77;
+  --accent-foreground: #ffffff;
+
+  /* Feedback */
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #e11d48;
+  --info: #3b82f6;
+  --star: #ffb020;
+
+  --ring: #ff6a3d;
+
+  /* Footer stays a fixed dawn-navy brand block regardless of theme */
+  --footer-bg: #17102a;
+  --footer-fg: #ede9f5;
+  --footer-muted: #a79dbf;
+  --footer-border: #2e2542;
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #ff6a3d 0%, #ff3d77 55%, #6d5df6 100%);
+  --gradient-brand-soft: linear-gradient(
+    135deg,
+    color-mix(in oklab, #ff6a3d 14%, transparent) 0%,
+    color-mix(in oklab, #6d5df6 14%, transparent) 100%
+  );
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgba(20, 10, 30, 0.04), 0 8px 24px -8px rgba(20, 10, 30, 0.1);
+  --shadow-card-hover: 0 20px 40px -12px rgba(20, 10, 30, 0.25);
+  --shadow-glow-primary: 0 10px 30px -8px rgba(255, 106, 61, 0.55);
+}
+
+:root[data-theme="dark"] {
+  --background: #0e0b14;
+  --surface: #17131f;
+  --surface-alt: #1f1a2b;
+  --border: #2c2638;
+
+  --foreground: #f5f1ec;
+  --muted-foreground: #a69cb0;
+
+  --primary: #ff7f55;
+  --primary-hover: #ff9770;
+  --primary-foreground: #1c1013;
+
+  --secondary: #6d5df6;
+  --secondary-foreground: #ffffff;
+
+  --accent: #ff5c93;
+  --accent-foreground: #ffffff;
+
+  --success: #22c55e;
+  --warning: #fbbf24;
+  --danger: #f43f5e;
+  --info: #60a5fa;
+  --star: #ffc94d;
+
+  --ring: #ff7f55;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -8px rgba(0, 0, 0, 0.45);
+  --shadow-card-hover: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+  --shadow-glow-primary: 0 10px 30px -8px rgba(255, 127, 85, 0.45);
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-border: var(--border);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-star: var(--star);
+  --color-ring: var(--ring);
+
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-fg: var(--footer-fg);
+  --color-footer-muted: var(--footer-muted);
+  --color-footer-border: var(--footer-border);
+
+  --font-sans: var(--font-geist-sans);
+  --font-heading: var(--font-outfit);
+  --font-mono: var(--font-geist-mono);
+
+  --radius-card: 1rem;
+  --radius-button: 0.75rem;
+  --radius-pill: 9999px;
+
+  /* Custom animation utilities (animate-*) */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 6s ease-in-out 1.5s infinite;
+  --animate-fade-in-up: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-shimmer: shimmer 2.2s linear infinite;
+  --animate-toast-in: toast-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-gradient-pan: gradient-pan 6s ease infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-pulse-glow: pulse-glow 2.4s ease-in-out infinite;
+  --animate-spin-slow: spin 10s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  @keyframes gradient-pan {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-primary) 45%, transparent);
+    }
+    50% {
+      box-shadow: 0 0 0 10px color-mix(in oklab, var(--color-primary) 0%, transparent);
+    }
   }
 }
 
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-primary) 30%, transparent);
+  color: var(--color-foreground);
+}
+
+/* Consistent, visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Slim, theme-aware scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@utility text-gradient-brand {
+  background-image: var(--gradient-brand);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+@utility bg-gradient-brand-soft {
+  background-image: var(--gradient-brand-soft);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility shadow-card-hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+@utility shadow-glow-primary {
+  box-shadow: var(--shadow-glow-primary);
+}
+
+@utility bg-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    transparent 30%,
+    color-mix(in oklab, white 35%, transparent) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
 }
