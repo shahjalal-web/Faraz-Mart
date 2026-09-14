@@ -9,7 +9,7 @@ import { ProductListing } from "@/components/product/product-listing";
 
 export const metadata: Metadata = {
   title: "Deals & Discounts",
-  description: "Shop every discounted product on Fajar Mart in one place.",
+  description: "Shop every discounted product on Faraz Mart in one place.",
 };
 
 export default async function DealsPage({
@@ -38,7 +38,7 @@ export default async function DealsPage({
         <div>
           <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">Deals & Discounts</h1>
           <p className="text-sm text-muted-foreground sm:text-base">
-            Every discounted product on Fajar Mart, all in one place.
+            Every discounted product on Faraz Mart, all in one place.
           </p>
         </div>
       </div>

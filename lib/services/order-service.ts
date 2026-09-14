@@ -4,7 +4,7 @@ import type { Coupon } from "@/types/coupon";
 import type { DeliveryMethod, Order, PaymentMethod, ShippingAddress } from "@/types/order";
 import { calculateOrderTotals } from "@/lib/pricing";
 
-const STORAGE_KEY = "fajarmart-orders";
+const STORAGE_KEY = "farazmart-orders";
 
 /**
  * Orders are user-generated at runtime (unlike the static product/category

@@ -45,12 +45,12 @@ export function Footer() {
     <footer className="bg-footer-bg text-footer-fg">
       <Container className="grid gap-10 py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-8">
         <div className="flex flex-col gap-4">
-          <Link href="/" className="inline-flex items-center gap-2" aria-label="Fajar Mart home">
+          <Link href="/" className="inline-flex items-center gap-2" aria-label="Faraz Mart home">
             <span className="flex size-9 items-center justify-center rounded-xl bg-linear-to-br from-[#FF6A3D] via-[#FF3D77] to-[#6D5DF6]">
               <Sunrise className="size-5 text-white" strokeWidth={2.25} />
             </span>
             <span className="font-heading text-xl font-bold tracking-tight text-white">
-              Fajar<span className="text-primary">Mart</span>
+              Faraz<span className="text-primary">Mart</span>
             </span>
           </Link>
           <p className="max-w-sm text-sm text-footer-muted">
@@ -58,8 +58,8 @@ export function Footer() {
             support that actually helps, every single day.
           </p>
           <div className="flex flex-col gap-2 text-sm text-footer-muted">
-            <a href="mailto:support@fajarmart.com" className="flex items-center gap-2 transition-colors hover:text-white">
-              <Mail className="size-4" /> support@fajarmart.com
+            <a href="mailto:support@farazmart.com" className="flex items-center gap-2 transition-colors hover:text-white">
+              <Mail className="size-4" /> support@farazmart.com
             </a>
             <a href="tel:+18005551234" className="flex items-center gap-2 transition-colors hover:text-white">
               <Phone className="size-4" /> +1 (800) 555-1234
@@ -110,7 +110,7 @@ export function Footer() {
 
       <div className="border-t border-footer-border">
         <Container className="flex flex-col items-center justify-between gap-2 py-5 text-xs text-footer-muted sm:flex-row">
-          <p>© {new Date().getFullYear()} Fajar Mart. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Faraz Mart. All rights reserved.</p>
           <p>Designed for a modern, multi-category shopping experience.</p>
         </Container>
       </div>

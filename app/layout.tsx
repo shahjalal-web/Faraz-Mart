@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import Script from "next/script";
 import { Providers } from "@/context/providers";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { ScrollToTopButton } from "@/components/layout/scroll-to-top-button";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,16 +22,22 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    default: "Fajar Mart — Shop Everything You Love",
-    template: "%s | Fajar Mart",
+    default: "Faraz Mart — Shop Everything You Love",
+    template: "%s | Faraz Mart",
   },
   description:
-    "Fajar Mart is a modern multi-category marketplace — electronics, fashion, home, beauty and more, all in one trusted place.",
+    "Faraz Mart is a modern multi-category marketplace — electronics, fashion, home, beauty and more, all in one trusted place.",
 };
 
 // Runs before hydration to apply the saved theme and avoid a light/dark flash.
-const themeInitScript = `(function(){try{var k="${"fajarmart-theme"}";var t=localStorage.getItem(k);if(!t){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}catch(e){}})();`;
+const themeInitScript = `(function(){try{var k="${"farazmart-theme"}";var t=localStorage.getItem(k);if(!t){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}catch(e){}})();`;
 
+/**
+ * Kept deliberately minimal: only the document shell, fonts and global
+ * providers. Customer-facing chrome (Header/Footer) lives in
+ * `app/(shop)/layout.tsx` and the admin shell in `app/admin/layout.tsx` —
+ * admin routes must never inherit the storefront header/footer/cart UI.
+ */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -45,12 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <Script id="theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        <Providers>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <ScrollToTopButton />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

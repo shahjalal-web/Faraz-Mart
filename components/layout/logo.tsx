@@ -7,7 +7,7 @@ export function Logo({ className, mono = false }: { className?: string; mono?: b
     <Link
       href="/"
       className={cn("group inline-flex items-center gap-2 shrink-0", className)}
-      aria-label="Fajar Mart home"
+      aria-label="Faraz Mart home"
     >
       <span
         className={cn(
@@ -22,7 +22,7 @@ export function Logo({ className, mono = false }: { className?: string; mono?: b
           mono ? "text-current" : "text-foreground"
         )}
       >
-        Fajar<span className="text-primary">Mart</span>
+        Faraz<span className="text-primary">Mart</span>
       </span>
     </Link>
   );

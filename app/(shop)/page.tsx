@@ -22,9 +22,9 @@ import { TestimonialsSection } from "@/components/home/testimonials-section";
 import { NewsletterSection } from "@/components/home/newsletter-section";
 
 export const metadata: Metadata = {
-  title: "Fajar Mart — Shop Everything You Love",
+  title: "Faraz Mart — Shop Everything You Love",
   description:
-    "Discover electronics, fashion, home, beauty and more on Fajar Mart — a modern multi-category marketplace with fast delivery and easy returns.",
+    "Discover electronics, fashion, home, beauty and more on Faraz Mart — a modern multi-category marketplace with fast delivery and easy returns.",
 };
 
 export default async function Home() {

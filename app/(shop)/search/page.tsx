@@ -10,7 +10,7 @@ import { SearchX } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Search Results",
-  description: "Search Fajar Mart for products, brands and categories.",
+  description: "Search Faraz Mart for products, brands and categories.",
 };
 
 export default async function SearchPage({

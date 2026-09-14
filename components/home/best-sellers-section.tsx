@@ -14,7 +14,7 @@ export function BestSellersSection({ products }: { products: Product[] }) {
           </>
         }
         title="Best Sellers"
-        description="The most-loved products across Fajar Mart, ranked by real orders."
+        description="The most-loved products across Faraz Mart, ranked by real orders."
         viewAllHref="/shop"
       />
       <ProductScrollRow products={products} />

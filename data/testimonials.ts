@@ -7,7 +7,7 @@ export const testimonials: Testimonial[] = [
     avatar: "RC",
     rating: 5,
     comment:
-      "Delivery was faster than I expected and the packaging was so well done. Fajar Mart is now my first stop for everything.",
+      "Delivery was faster than I expected and the packaging was so well done. Faraz Mart is now my first stop for everything.",
     isVerifiedPurchase: true,
     date: "2026-08-02T10:00:00.000Z",
   },

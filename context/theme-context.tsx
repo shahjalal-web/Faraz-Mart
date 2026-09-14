@@ -12,7 +12,7 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-export const THEME_STORAGE_KEY = "fajarmart-theme";
+export const THEME_STORAGE_KEY = "farazmart-theme";
 
 function applyThemeToDocument(theme: Theme) {
   document.documentElement.dataset.theme = theme;

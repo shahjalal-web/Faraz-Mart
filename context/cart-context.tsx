@@ -33,8 +33,8 @@ interface CartContextValue {
 
 const CartContext = createContext<CartContextValue | null>(null);
 
-const STORAGE_KEY = "fajarmart-cart";
-const COUPON_STORAGE_KEY = "fajarmart-coupon";
+const STORAGE_KEY = "farazmart-cart";
+const COUPON_STORAGE_KEY = "farazmart-coupon";
 
 function sameLine(a: CartItem, productId: string, color?: string, size?: string) {
   return a.productId === productId && a.color === color && a.size === size;

@@ -9,7 +9,7 @@ import { ProductListing } from "@/components/product/product-listing";
 
 export const metadata: Metadata = {
   title: "New Arrivals",
-  description: "Discover the newest products added to Fajar Mart.",
+  description: "Discover the newest products added to Faraz Mart.",
 };
 
 export default async function NewArrivalsPage({

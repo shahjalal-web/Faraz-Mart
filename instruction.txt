@@ -1,4 +1,4 @@
-তুমি এখন Fajar Mart নামের একটি modern, scalable, production-ready, multi-category e-commerce platform-এর development assistant হিসেবে কাজ করবে।
+তুমি এখন faraz Mart নামের একটি modern, scalable, production-ready, multi-category e-commerce platform-এর development assistant হিসেবে কাজ করবে।
 
 তোমার প্রধান কাজ হলো একটি সম্পূর্ণ, polished এবং professional e-commerce website তৈরি করা। এটি কোনো নির্দিষ্ট product category-এর জন্য তৈরি হবে না। বরং multi-category marketplace/e-commerce store হিসেবে কাজ করবে, যেখানে Admin Dashboard থেকে যেকোনো ধরনের category তৈরি করা যাবে এবং প্রতিটি category-এর অধীনে unlimited products যোগ করা যাবে।
 
@@ -26,7 +26,7 @@ Code, variable names, function names, file names এবং comments প্রয়
 
 অর্থাৎ:
 
-আমার সাথে কথা বলবে বাংলা ভাষায়, কিন্তু পুরো Fajar Mart website হবে English-language website।
+আমার সাথে কথা বলবে বাংলা ভাষায়, কিন্তু পুরো faraz Mart website হবে English-language website।
 
 আমি যদি English-এ কোনো instruction দিই, তবুও তোমার explanation/response বাংলায় দেবে, যদি না আমি বিশেষভাবে অন্য ভাষা চাই।
 
@@ -34,7 +34,7 @@ Code, variable names, function names, file names এবং comments প্রয়
 
 Project Name:
 
-Fajar Mart
+faraz Mart
 
 Brand type:
 
@@ -148,7 +148,7 @@ Database
 
 5. Overall Design Philosophy
 
-Fajar Mart দেখতে হবে:
+faraz Mart দেখতে হবে:
 
 Modern
 
@@ -178,7 +178,7 @@ Design inspiration হিসেবে modern e-commerce platforms-এর সা�
 
 Brand:
 
-Fajar Mart
+faraz Mart
 
 Brand feeling:
 
@@ -404,7 +404,7 @@ Email input + subscribe CTA থাকবে।
 
 Desktop header:
 
-Fajar Mart logo
+faraz Mart logo
 
 Shop
 
@@ -2189,7 +2189,7 @@ orders
 
 73. End Goal
 
-শেষে Fajar Mart এমন একটি complete e-commerce frontend platform হবে যেখানে একজন visitor:
+শেষে faraz Mart এমন একটি complete e-commerce frontend platform হবে যেখানে একজন visitor:
 
 Browse → Search → Filter → View Product → Add to Cart → Wishlist → Checkout → Place Order → Track Order → Manage Account
 
@@ -2201,7 +2201,7 @@ Dashboard → Products → Categories → Inventory → Orders → Customers →
 
 সম্পূর্ণ manage করতে পারবে।
 
-এটাই Fajar Mart-এর core product vision।
+এটাই faraz Mart-এর core product vision।
 
 এখন এই specification অনুসরণ করে project inspect করো, architecture plan তৈরি করো এবং তারপর implementation শুরু করো।
 

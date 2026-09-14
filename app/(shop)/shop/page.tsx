@@ -8,7 +8,7 @@ import { ProductListing } from "@/components/product/product-listing";
 
 export const metadata: Metadata = {
   title: "Shop All Products",
-  description: "Browse every product on Fajar Mart — electronics, fashion, home, beauty and more.",
+  description: "Browse every product on Faraz Mart — electronics, fashion, home, beauty and more.",
 };
 
 export default async function ShopPage({

@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 
 /**
- * Fajar Mart has no product photography yet, so category/product art is generated
+ * Faraz Mart has no product photography yet, so category/product art is generated
  * from a deterministic "dawn gradient" palette instead of external image URLs.
  * Swapping in real photos later only means changing the `image`/`thumbnail` fields.
  */

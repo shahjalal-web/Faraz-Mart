@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { gradientForSeed } from "@/lib/visual";
 
 /**
- * Fajar Mart doesn't have product photography yet, so every category and
+ * Faraz Mart doesn't have product photography yet, so every category and
  * product "image" is a deterministic dawn-gradient tile with a representative
  * icon. Swapping in real photos later is a one-line change per product
  * (just point `thumbnail`/`images` at a URL and render an <Image> instead).

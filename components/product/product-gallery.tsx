@@ -6,7 +6,7 @@ import { iconForCategory } from "@/lib/visual";
 import { cn } from "@/lib/utils";
 
 /**
- * Fajar Mart has no product photography yet, so every angle reuses the same
+ * Faraz Mart has no product photography yet, so every angle reuses the same
  * dawn-gradient tile (kept visually consistent) with a subtle icon rotation
  * per frame to make switching thumbnails feel tangible.
  *
