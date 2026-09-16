@@ -1,42 +1,61 @@
-import { orders as seedOrders } from "@/data/orders";
 import type { CartItem } from "@/types/cart";
 import type { Coupon } from "@/types/coupon";
 import type { DeliveryMethod, Order, PaymentMethod, ShippingAddress } from "@/types/order";
-import { calculateOrderTotals } from "@/lib/pricing";
+import { fetchJson } from "@/lib/services/backend-client";
 
-const STORAGE_KEY = "farazmart-orders";
+const MY_ORDER_IDS_KEY = "farazmart-my-order-ids";
 
 /**
- * Orders are user-generated at runtime (unlike the static product/category
- * catalog), so this service persists them to localStorage behind the same
- * async function signatures a real `/api/orders` endpoint would expose —
- * UI code never touches `localStorage` directly.
+ * There's no customer login yet, so "my orders" can't be scoped by account
+ * on the server — instead this browser remembers the ids of orders it has
+ * placed (mirroring how the old localStorage-backed mock behaved in
+ * practice: every visitor only ever saw their own browser's orders). This
+ * is what keeps GET /api/orders/:id — a single, hard-to-guess order id — as
+ * the only unauthenticated read on the Order collection; there's no bulk
+ * "list every order" endpoint a stranger could hit.
  */
-function readStoredOrders(): Order[] {
+function readMyOrderIds(): string[] {
   if (typeof window === "undefined") return [];
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Order[]) : [];
+    const raw = window.localStorage.getItem(MY_ORDER_IDS_KEY);
+    return raw ? (JSON.parse(raw) as string[]) : [];
   } catch {
     return [];
   }
 }
 
-function writeStoredOrders(orders: Order[]) {
+function rememberMyOrderId(orderId: string) {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(orders));
-}
-
-export async function getOrders(): Promise<Order[]> {
-  const stored = readStoredOrders();
-  return [...stored, ...seedOrders].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+  const ids = readMyOrderIds();
+  window.localStorage.setItem(MY_ORDER_IDS_KEY, JSON.stringify([orderId, ...ids]));
 }
 
 export async function getOrderById(orderId: string): Promise<Order | null> {
-  const all = await getOrders();
-  return all.find((order) => order.id === orderId) ?? null;
+  try {
+    return await fetchJson<Order>(`/api/orders/${orderId}`);
+  } catch {
+    return null;
+  }
+}
+
+/** Customer-facing "My Orders" — see the comment on readMyOrderIds() above. */
+export async function getMyOrders(): Promise<Order[]> {
+  const ids = readMyOrderIds();
+  const orders = await Promise.all(ids.map((id) => getOrderById(id)));
+  return orders.filter((order): order is Order => order !== null);
+}
+
+/** Admin-only full order list — protected by requireAdmin() on the backend. */
+export async function getOrders(): Promise<Order[]> {
+  return fetchJson<Order[]>("/api/orders", { credentials: "include" });
+}
+
+export async function updateOrderStatus(orderId: string, status: Order["status"]): Promise<Order> {
+  return fetchJson<Order>(`/api/orders/${orderId}/status`, {
+    method: "PATCH",
+    credentials: "include",
+    body: JSON.stringify({ status }),
+  });
 }
 
 interface CreateOrderInput {
@@ -49,41 +68,20 @@ interface CreateOrderInput {
   coupon: Coupon | null;
 }
 
-function generateOrderId(): string {
-  const suffix = Math.floor(100000 + Math.random() * 900000);
-  return `FM-${suffix}`;
-}
-
 export async function createOrder(input: CreateOrderInput): Promise<Order> {
-  const subtotal = input.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const totals = calculateOrderTotals(subtotal, input.deliveryMethod, input.coupon);
+  const order = await fetchJson<Order>("/api/orders", {
+    method: "POST",
+    body: JSON.stringify({
+      items: input.items,
+      customerName: input.customerName,
+      customerEmail: input.customerEmail,
+      shippingAddress: input.shippingAddress,
+      deliveryMethod: input.deliveryMethod,
+      paymentMethod: input.paymentMethod,
+      coupon: input.coupon,
+    }),
+  });
 
-  const order: Order = {
-    id: generateOrderId(),
-    items: input.items.map((item) => ({
-      productId: item.productId,
-      name: item.name,
-      slug: item.slug,
-      thumbnail: item.thumbnail,
-      categoryId: item.categoryId,
-      price: item.price,
-      quantity: item.quantity,
-      color: item.color,
-      size: item.size,
-    })),
-    customerName: input.customerName,
-    customerEmail: input.customerEmail,
-    shippingAddress: input.shippingAddress,
-    deliveryMethod: input.deliveryMethod,
-    paymentMethod: input.paymentMethod,
-    couponCode: input.coupon?.code,
-    ...totals,
-    status: "pending",
-    createdAt: new Date().toISOString(),
-  };
-
-  const stored = readStoredOrders();
-  writeStoredOrders([order, ...stored]);
-
+  rememberMyOrderId(order.id);
   return order;
 }

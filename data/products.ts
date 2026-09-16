@@ -1,9 +1,11 @@
 import type { Product } from "@/types/product";
 
 /**
- * Mock "database" table for products. In the real backend this becomes a
- * `products` collection/table served through the service layer in
- * `lib/services/product-service.ts` — UI code never imports this file directly.
+ * Original mock product catalog. No longer read by the app at runtime —
+ * `lib/services/product-service.ts` now fetches from the backend
+ * (MongoDB, seeded from this exact file via back-end/scripts/migrate-catalog.ts).
+ * Kept here as that migration's source and as the historical seed data;
+ * re-run `npm run migrate:catalog` in back-end/ after editing it.
  */
 export const products: Product[] = [
   // ---------------- Electronics ----------------

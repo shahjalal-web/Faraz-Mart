@@ -1,6 +1,6 @@
-import { categories } from "@/data/categories";
-import { products } from "@/data/products";
+import type { Category } from "@/types/category";
 import type { Product, ProductListResult, ProductQueryParams } from "@/types/product";
+import { fetchJson } from "@/lib/services/backend-client";
 
 const PRICE_RANGE_BOUNDS: Record<NonNullable<ProductQueryParams["priceRange"]>, [number, number]> = {
   "under-25": [0, 25],
@@ -16,19 +16,20 @@ function effectivePrice(product: Product): number {
 
 /**
  * Service layer — the only place UI code should reach for product data.
- * Every function returns a Promise so the underlying data source can move
- * from this static mock array to a real API/database call later without
- * touching a single component.
+ * Data now comes from the backend (MongoDB) instead of a static mock array,
+ * but every function keeps its original signature so no component changed.
  */
 export async function getProducts(): Promise<Product[]> {
-  return products;
+  return fetchJson<Product[]>("/api/products");
 }
 
 export async function getFeaturedProducts(limit = 8): Promise<Product[]> {
+  const products = await getProducts();
   return products.filter((product) => product.isFeatured).slice(0, limit);
 }
 
 export async function getBestSellers(limit = 8): Promise<Product[]> {
+  const products = await getProducts();
   return [...products]
     .filter((product) => product.isBestSeller)
     .sort((a, b) => b.soldCount - a.soldCount)
@@ -36,6 +37,7 @@ export async function getBestSellers(limit = 8): Promise<Product[]> {
 }
 
 export async function getNewArrivals(limit = 8): Promise<Product[]> {
+  const products = await getProducts();
   return [...products]
     .filter((product) => product.isNewArrival)
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
@@ -43,20 +45,24 @@ export async function getNewArrivals(limit = 8): Promise<Product[]> {
 }
 
 export async function getFlashSaleProducts(limit = 8): Promise<Product[]> {
+  const products = await getProducts();
   return products.filter((product) => product.isFlashSale && product.salePrice).slice(0, limit);
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const products = await getProducts();
   return products.find((product) => product.slug === slug) ?? null;
 }
 
 export async function getProductsByCategory(categoryId: string): Promise<Product[]> {
+  const products = await getProducts();
   return products.filter(
     (product) => product.categoryId === categoryId || product.subcategoryId === categoryId
   );
 }
 
 export async function getRelatedProducts(product: Product, limit = 4): Promise<Product[]> {
+  const products = await getProducts();
   return products
     .filter((item) => item.id !== product.id && item.categoryId === product.categoryId)
     .slice(0, limit);
@@ -64,13 +70,13 @@ export async function getRelatedProducts(product: Product, limit = 4): Promise<P
 
 export async function getProductsByIds(ids: string[]): Promise<Product[]> {
   const idSet = new Set(ids);
+  const products = await getProducts();
   return products.filter((product) => idSet.has(product.id));
 }
 
 /**
  * Single filter/sort/paginate entry point shared by /shop, /category/[slug],
- * /search, /deals and /new-arrivals — a real API would take the same params
- * as query-string args, so this is where that swap would happen later.
+ * /search, /deals and /new-arrivals.
  */
 export async function getProductsList(params: ProductQueryParams = {}): Promise<ProductListResult> {
   const {
@@ -85,6 +91,8 @@ export async function getProductsList(params: ProductQueryParams = {}): Promise<
     page = 1,
     pageSize = 12,
   } = params;
+
+  const [products, categories] = await Promise.all([getProducts(), fetchJson<Category[]>("/api/categories")]);
 
   let filtered = [...products];
 
@@ -183,6 +191,7 @@ export async function getProductsList(params: ProductQueryParams = {}): Promise<
 
 /** Earliest active flash-sale deadline, used to drive the deals countdown. */
 export async function getNextFlashSaleDeadline(): Promise<string | null> {
+  const products = await getProducts();
   const active = await getFlashSaleProducts(products.length);
   if (active.length === 0) return null;
 

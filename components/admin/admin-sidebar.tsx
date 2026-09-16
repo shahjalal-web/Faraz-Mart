@@ -30,7 +30,9 @@ function SectionRow({ label, enabled, isActive }: { label: string; enabled: bool
 
 export function AdminSidebar({ className }: { className?: string }) {
   const pathname = usePathname();
-  const [openSection, setOpenSection] = useState<string | null>(null);
+  const [openSection, setOpenSection] = useState<string | null>(
+    () => ADMIN_NAV_SECTIONS.find((section) => section.items?.some((item) => item.href.split("?")[0] === pathname))?.label ?? null
+  );
 
   return (
     <aside className={className ?? DEFAULT_CLASSNAME}>
@@ -78,11 +80,17 @@ export function AdminSidebar({ className }: { className?: string }) {
               </button>
               {isOpen && (
                 <div className="ml-[1.625rem] flex flex-col gap-0.5 border-l border-border pl-3">
-                  {section.items.map((item) => (
-                    <div key={item.label} className="cursor-not-allowed">
-                      <SectionRow label={item.label} enabled={item.enabled} />
-                    </div>
-                  ))}
+                  {section.items.map((item) =>
+                    item.enabled ? (
+                      <Link key={item.label} href={item.href}>
+                        <SectionRow label={item.label} enabled={item.enabled} isActive={pathname === item.href.split("?")[0]} />
+                      </Link>
+                    ) : (
+                      <div key={item.label} className="cursor-not-allowed">
+                        <SectionRow label={item.label} enabled={item.enabled} />
+                      </div>
+                    )
+                  )}
                 </div>
               )}
             </div>

@@ -2,10 +2,14 @@
 
 import { Suspense, useState, type FormEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Lock, LogIn, ShieldCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { FormField } from "@/components/ui/form-field";
 import { Button } from "@/components/ui/button";
+import { getFirebaseAuth } from "@/lib/firebase/client";
+
+const GENERIC_ERROR = "Invalid email or password.";
 
 export default function AdminLoginPage() {
   return (
@@ -29,11 +33,16 @@ function AdminLoginForm() {
     setIsSubmitting(true);
 
     try {
+      // Firebase authenticates the actual credential first; the backend
+      // never sees the password, only the ID token it verifies server-side.
+      const credential = await signInWithEmailAndPassword(getFirebaseAuth(), email, password);
+      const idToken = await credential.user.getIdToken();
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/admin/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ idToken }),
       });
       const data = await response.json();
 
@@ -45,8 +54,16 @@ function AdminLoginForm() {
       const destination = searchParams.get("from") || "/admin";
       router.push(destination);
       router.refresh();
-    } catch {
-      setError("Couldn't reach the server. Please try again.");
+    } catch (err) {
+      // Firebase throws its own error codes (wrong password, no such user,
+      // etc.) — collapse all of them to one generic message, same as before,
+      // so a failed login never reveals whether the email exists.
+      const code = (err as { code?: string })?.code;
+      if (code && code.startsWith("auth/")) {
+        setError(GENERIC_ERROR);
+      } else {
+        setError("Couldn't reach the server. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }

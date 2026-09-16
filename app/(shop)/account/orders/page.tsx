@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, Package } from "lucide-react";
-import { getOrders } from "@/lib/services/order-service";
+import { getMyOrders } from "@/lib/services/order-service";
 import type { Order } from "@/types/order";
 import { formatPrice } from "@/lib/utils";
 import { Container } from "@/components/ui/container";
@@ -20,7 +20,7 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[] | null>(null);
 
   useEffect(() => {
-    getOrders().then((result) => {
+    getMyOrders().then((result) => {
       setOrders(result);
     });
   }, []);

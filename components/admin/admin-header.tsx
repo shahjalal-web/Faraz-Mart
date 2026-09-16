@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
 import { LogOut, Menu, User } from "lucide-react";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Modal } from "@/components/ui/modal";
 import { AdminSidebar } from "@/components/admin/admin-sidebar";
+import { getFirebaseAuth } from "@/lib/firebase/client";
 import type { AdminRole } from "@/lib/auth/jwt";
 
 const ROLE_LABELS: Record<AdminRole, string> = {
@@ -24,10 +26,15 @@ export function AdminHeader({ name, role }: { name: string; role: AdminRole }) {
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
-    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/admin/auth/logout`, {
-      method: "POST",
-      credentials: "include",
-    });
+    await Promise.all([
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/admin/auth/logout`, {
+        method: "POST",
+        credentials: "include",
+      }),
+      // Clears Firebase's own client-side session too, so it doesn't stay
+      // signed in after our backend session cookie is gone.
+      signOut(getFirebaseAuth()),
+    ]);
     router.push("/admin/login");
     router.refresh();
   };

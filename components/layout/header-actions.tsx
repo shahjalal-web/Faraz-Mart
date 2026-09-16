@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Heart, ShoppingCart, User } from "lucide-react";
 import { useCart } from "@/context/cart-context";
 import { useWishlist } from "@/context/wishlist-context";
+import { useCustomerAuth } from "@/context/customer-auth-context";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { cn } from "@/lib/utils";
 
@@ -42,11 +43,12 @@ function IconLink({
 export function HeaderActions() {
   const { itemCount } = useCart();
   const { items: wishlistItems } = useWishlist();
+  const { customer } = useCustomerAuth();
 
   return (
     <div className="flex items-center gap-1 sm:gap-2">
       <ThemeToggle className="hidden sm:flex" />
-      <IconLink href="/account" label="Account">
+      <IconLink href={customer ? "/account" : "/login"} label="Account">
         <User className="size-5" />
       </IconLink>
       <IconLink href="/account/wishlist" label="Wishlist" count={wishlistItems.length}>

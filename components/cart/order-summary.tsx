@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Tag, X } from "lucide-react";
 import { useCart } from "@/context/cart-context";
@@ -33,8 +33,7 @@ export function OrderSummary({
 
   const totals = calculateOrderTotals(subtotal, shippingMethod, coupon);
 
-  const handleApply = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleApply = async () => {
     if (!code.trim()) return;
     setIsApplying(true);
     const success = await applyCoupon(code);
@@ -68,18 +67,28 @@ export function OrderSummary({
               </button>
             </div>
           ) : (
-            <form onSubmit={handleApply} className="flex gap-2">
+            // A plain div, not a <form> — this already sits inside the
+            // checkout page's own <form>, and nested <form> elements are
+            // invalid HTML (and broke hydration) since a form's own submit
+            // button counts as the outer form's submit too.
+            <div className="flex gap-2">
               <input
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    handleApply();
+                  }
+                }}
                 placeholder="Coupon code"
                 aria-label="Coupon code"
                 className="h-10 flex-1 rounded-button border border-border bg-surface-alt px-3 text-sm focus:border-primary focus:outline-none"
               />
-              <Button type="submit" variant="outline" size="sm" disabled={isApplying}>
+              <Button type="button" variant="outline" size="sm" disabled={isApplying} onClick={handleApply}>
                 Apply
               </Button>
-            </form>
+            </div>
           )}
         </div>
       )}

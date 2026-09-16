@@ -3,9 +3,25 @@ import { AlertTriangle, DollarSign, Package, ShieldCheck, ShoppingBag, Users } f
 import { ADMIN_SESSION_COOKIE, verifyAdminToken } from "@/lib/auth/jwt";
 import { getProducts } from "@/lib/services/product-service";
 import { getTopLevelCategories } from "@/lib/services/category-service";
-import { getOrders } from "@/lib/services/order-service";
+import type { Order } from "@/types/order";
 import { formatPrice } from "@/lib/utils";
 import { StatCard } from "@/components/admin/stat-card";
+
+/**
+ * A Server Component has no browser cookie jar, so unlike the client-side
+ * admin pages (which rely on credentials:"include"), fetching an
+ * admin-gated backend route here means manually forwarding the same session
+ * cookie this page already read to verify itself.
+ */
+async function getOrdersForDashboard(token: string | undefined): Promise<Order[]> {
+  if (!token) return [];
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/orders`, {
+    cache: "no-store",
+    headers: { Cookie: `${ADMIN_SESSION_COOKIE}=${token}` },
+  });
+  if (!response.ok) return [];
+  return response.json();
+}
 
 export default async function AdminDashboardPage() {
   const cookieStore = await cookies();
@@ -15,7 +31,7 @@ export default async function AdminDashboardPage() {
   const [products, categories, orders] = await Promise.all([
     getProducts(),
     getTopLevelCategories(),
-    getOrders(),
+    getOrdersForDashboard(token),
   ]);
 
   const lowStockCount = products.filter((p) => p.stockStatus === "low-stock").length;
